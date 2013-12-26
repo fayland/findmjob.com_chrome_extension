@@ -1,13 +1,16 @@
-// if you checked "fancy-settings" in extensionizr.com, uncomment this lines
+!function(win, doc, $){
+    var intervalId;
+    var fetchUpdates = function() {
+        var token = win.localStorage.getItem('findmjob_token');
+        if (token && token.length > 0) {
+            $.getJSON('http://findmjob.com/user/updates?format=json&token=' + token, function(data) {
+                console.log(data);
+            });
+        } else if (intervalId) {
+            window.clearInterval(intervalId);
+        }
+    };
 
-// var settings = new Store("settings", {
-//     "sample_setting": "This is how you use Store.js to remember values"
-// });
-
-
-//example of using a message handler from the inject scripts
-chrome.extension.onMessage.addListener(
-  function(request, sender, sendResponse) {
-  	chrome.pageAction.show(sender.tab.id);
-    sendResponse();
-  });
+    intervalId = win.setInterval(fetchUpdates, 60000); // every minute
+    $(doc).ready(fetchUpdates);
+}(window, document, Zepto);
