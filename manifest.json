@@ -10,15 +10,32 @@
     "128": "icons/icon128.png"
   },
   "default_locale": "en",
-  "options_page": "src/options/index.html",
+  "background": {
+    "page": "src/bg/background.html",
+    "persistent": false
+  },
+  "options_page": "src/options_custom/index.html",
   "browser_action": {
     "default_icon": "icons/icon19.png",
-    "default_title": "Findmjob Settings",
+    "default_title": "Findmjob Updates",
     "default_popup": "src/browser_action/browser_action.html"
   },
   "permissions": [
     "notifications",
     "geolocation",
     "http://findmjob.com/*"
+  ],
+  "omnibox": {
+    "keyword": "Perl"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.google.com/*"
+      ],
+      "js": [
+        "src/inject/inject.js"
+      ]
+    }
   ]
 }
