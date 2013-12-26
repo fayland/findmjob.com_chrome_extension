@@ -24,18 +24,5 @@
     "notifications",
     "geolocation",
     "http://findmjob.com/*"
-  ],
-  "omnibox": {
-    "keyword": "Perl"
-  },
-  "content_scripts": [
-    {
-      "matches": [
-        "https://www.google.com/*"
-      ],
-      "js": [
-        "src/inject/inject.js"
-      ]
-    }
   ]
 }
