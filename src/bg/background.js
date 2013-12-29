@@ -12,6 +12,7 @@
             var url = 'http://findmjob.com/user/updates?' + REF_STRING + '&token=' + token + '&min_pushed_at=' + min_pushed_at;
             $.getJSON(url, function(data) {
                 if (data.updates && data.updates.length) {
+                    // send notification
                     if (window.webkitNotifications) {
                         $.each(data.updates, function(i, v) {
                             var notification = window.webkitNotifications.createNotification(
@@ -19,18 +20,30 @@
                                 v.title,                       // The title.
                                 v.title      // The body.
                             );
-                            notification.show();
-                            notification.onshow = function() { // Close after 30 secs
-                                setTimeout(function() {
-                                    notification.close();
-                                }, 30 * 1000);
-                            }
                             notification.onclick = function() { // Open on click
                                 window.open(base_url + v.url + '?' + REF_STRING);
-                                notification.close();
+                                notification.cancel();
                             }
+                            notification.show();
+                            // Close after 30 secs
+                            setTimeout(function() {
+                                notification.cancel();
+                            }, 30 * 1000);
                         });
                     }
+
+                    // store it so that popups can read it
+                    var updates = localStorage.getItem('findmjob_updates');
+                    if (! updates) {
+                        updates = Array();
+                    } else {
+                        updates = JSON.parse(updates);
+                    }
+                    console.log(updates);
+                    updates = updates.splice(0, 50); // to keep it samll
+                    updates = data.updates.concat(updates);
+                    localStorage.setItem('findmjob_updates', JSON.stringify(updates));
+
                     // just make it simple, we do not count the old ones
                     chrome.browserAction.setBadgeText({
                         text: data.updates.length.toString()
@@ -48,9 +61,3 @@
     intervalId = win.setInterval(fetchUpdates, 60000); // every minute
     $(doc).ready(fetchUpdates);
 }(window, document, Zepto);
-
-function resetBadgeText() {
-    chrome.browserAction.setBadgeText({
-        text: ""
-    });
-}
