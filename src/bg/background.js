@@ -11,7 +11,7 @@
             // min_pushed_at = 0;
             var url = 'http://findmjob.com/user/updates?' + REF_STRING + '&token=' + token + '&min_pushed_at=' + min_pushed_at;
             $.getJSON(url, function(data) {
-                if (data.updates) {
+                if (data.updates && data.updates.length) {
                     if (window.webkitNotifications) {
                         $.each(data.updates, function(i, v) {
                             var notification = window.webkitNotifications.createNotification(
@@ -31,6 +31,12 @@
                             }
                         });
                     }
+                    // just make it simple, we do not count the old ones
+                    chrome.browserAction.setBadgeText({
+                        text: data.updates.length.toString()
+                    });
+                }
+                if (data.max_pushed_at) {
                     localStorage.setItem('findmjob_pushed_at', data.max_pushed_at);
                 }
             });
@@ -42,3 +48,9 @@
     intervalId = win.setInterval(fetchUpdates, 60000); // every minute
     $(doc).ready(fetchUpdates);
 }(window, document, Zepto);
+
+function resetBadgeText() {
+    chrome.browserAction.setBadgeText({
+        text: ""
+    });
+}
