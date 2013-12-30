@@ -39,8 +39,7 @@
                     } else {
                         updates = JSON.parse(updates);
                     }
-                    console.log(updates);
-                    updates = updates.splice(0, 50); // to keep it samll
+                    updates = updates.splice(0, 10); // to keep it samll
                     updates = data.updates.concat(updates);
                     localStorage.setItem('findmjob_updates', JSON.stringify(updates));
 
