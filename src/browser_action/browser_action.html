@@ -1,13 +1,20 @@
 <!doctype html>
 <head>
-    <script src="../../js/zepto.min.js"></script>
+    <script src="/js/zepto.min.js"></script>
     <script src="browser_action.js"></script>
     <style type="text/css">
     #mainPopup {
         padding: 10px;
         height: 200px;
         width: 400px;
-        font-family: Helvetica, Ubuntu, Arial, sans-serif;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    #updates {
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+    #updates_view_more {
+        margin-bottom: 20px;
     }
     </style>
 </head>
@@ -15,5 +22,5 @@
 <div id="mainPopup">
     <ul id='updates'></ul>
     <p id="updates_view_more"><a href="http://findmjob.com/user/updates" target="_blank">View More</a></p>
-    <p id="updates_tips">You need <a href='http://findmjob.com'>follow some tags</a> in the main site</p>
+    <p id="updates_tips">You need <a href='http://findmjob.com'>follow some tags</a> to get updates.</p>
 </div>
