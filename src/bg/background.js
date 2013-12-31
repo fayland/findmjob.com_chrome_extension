@@ -25,10 +25,10 @@
                                 notification.cancel();
                             }
                             notification.show();
-                            // Close after 30 secs
+                            // Close after 20 secs
                             setTimeout(function() {
                                 notification.cancel();
-                            }, 30 * 1000);
+                            }, 20 * 1000);
                         });
                     }
 
