@@ -4,5 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('save').addEventListener('click', function() {
         localStorage.setItem('findmjob_token',  token.value);
         document.getElementById('msg').innerHTML = "Saved!";
+        document.getElementById('msg').style.display = "block";
     });
 });

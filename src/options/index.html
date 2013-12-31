@@ -3,13 +3,71 @@
 <head>
 	<title>FindmJob Settings</title>
     <script src="options.js"></script>
+    <style>
+    #msg {
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      background-color: #dff0d8;
+      border-color: #d6e9c6;
+      color: #3c763d;
+      display: none;
+      width: 320px;
+    }
+    #token {
+      width: 260px;
+      height: 30px;
+      padding: 5px 10px;
+      font-size: 12px;
+      line-height: 1.5;
+      border-radius: 3px;
+    }
+    #save {
+      display: inline-block;
+      margin-bottom: 0;
+      font-weight: normal;
+      text-align: center;
+      vertical-align: middle;
+      cursor: pointer;
+      background-image: none;
+      border: 1px solid transparent;
+      white-space: nowrap;
+      padding: 6px 12px;
+      font-size: 14px;
+      line-height: 1.428571429;
+      border-radius: 4px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -o-user-select: none;
+      user-select: none;
+      color: #ffffff;
+      background-color: #428bca;
+      border-color: #357ebd;
+    }
+    .info {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      line-height: 1.1;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+    </style>
 </head>
 <body>
 
     <p id='msg'></p>
 
-    <p>You can get the "token" from <a href="http://findmjob.com/user/token" target="_blank">Findmjob.com</a></p>
     <input type='text' name='token' id='token' /> <input type='submit' id='save' value="Save" />
+
+    <p class="info">
+    <h4>How does it work?</h4>
+    <ol>
+    <li>Sign in, <a href="http://findmjob.com/user/token" target="_blank">get the token</a> and fill above</li>
+    <li>Follow some tags like <a href="http://findmjob.com/tag/Perl" target="_blank">Perl</a>, <a href="http://findmjob.com/tag/Python" target="_blank">Python</a>, <a href="http://findmjob.com/tag/Ruby" target="_blank">Ruby</a>, <a href="http://findmjob.com/tag/Java" target="_blank">Java</a> etc.</li>
+    <li>and Enjoy!</li>
+    </ol>
+    </p>
 
 </body>
 </html>
