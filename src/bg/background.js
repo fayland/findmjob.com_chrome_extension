@@ -51,6 +51,17 @@
                 if (data.max_pushed_at) {
                     localStorage.setItem('findmjob_pushed_at', data.max_pushed_at);
                 }
+                if (data.error) {
+                    updates = Array();
+                    updates.push({
+                        'url': '/user/token',
+                        'title': data.error
+                    })
+                    localStorage.setItem('findmjob_updates', JSON.stringify(updates));
+                    chrome.browserAction.setBadgeText({
+                        text: 'Error'
+                    });
+                }
             });
         } else if (intervalId) {
             window.clearInterval(intervalId);
