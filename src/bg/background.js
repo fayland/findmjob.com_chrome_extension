@@ -63,9 +63,11 @@
                     });
                 }
             });
-        } else if (intervalId) {
-            window.clearInterval(intervalId);
         }
+        // Do not clear intervalId in case user updated the token in options (or we need call the setup in options.js)
+        //  else if (intervalId) {
+        //     window.clearInterval(intervalId);
+        // }
     };
 
     intervalId = win.setInterval(fetchUpdates, 60000); // every minute
