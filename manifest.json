@@ -21,7 +21,6 @@
   },
   "permissions": [
     "notifications",
-    "geolocation",
     "http://findmjob.com/*"
   ]
 }
